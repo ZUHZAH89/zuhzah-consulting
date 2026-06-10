@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zuhzah Consulting | Professional Document Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --cream: #f9f5ee;
+    --warm: #f0e8d5;
+    --gold: #c8952a;
+    --gold-light: #e8b94a;
+    --rust: #8b3a1a;
+    --sage: #5a6e4a;
+    --text: #3a2e1e;
+    --muted: #7a6a55;
+    --border: #d8c9a8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(249,245,238,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text);
+    font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--ink); color: var(--cream) !important;
+    padding: 0.5rem 1.2rem; border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--ink) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 5vw 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: var(--warm);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 1.2rem;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: 0.85rem 2rem; text-decoration: none;
+    font-size: 0.88rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: all 0.2s; border-radius: 2px;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold); color: var(--ink); }
+  .btn-outline {
+    border: 1.5px solid var(--ink); color: var(--ink);
+    padding: 0.85rem 2rem; text-decoration: none;
+    font-size: 0.88rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: all 0.2s; border-radius: 2px;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(26,18,8,0.06);
+    animation: float 5s ease-in-out infinite;
+  }
+  .stat-card:nth-child(2) { margin-left: 2rem; animation-delay: 1.5s; }
+  .stat-card:nth-child(3) { margin-left: 1rem; animation-delay: 3s; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: var(--gold);
+  }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 5vw; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 0.8rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; color: var(--ink);
+    line-height: 1.2; margin-bottom: 1.2rem;
+  }
+  .section-intro { color: var(--muted); max-width: 580px; font-size: 1.02rem; }
+
+  /* ── ABOUT ── */
+  #about { background: white; }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start; margin-top: 4rem;
+  }
+  .about-main p { color: var(--text); margin-bottom: 1rem; }
+  .mvv-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+  .mvv-item {
+    border-left: 3px solid var(--gold);
+    padding-left: 1.2rem;
+  }
+  .mvv-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem;
+  }
+  .mvv-item p { font-size: 0.92rem; color: var(--muted); }
+  .values-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.8rem; margin-top: 2rem;
+  }
+  .value-chip {
+    background: var(--warm); border: 1px solid var(--border);
+    padding: 0.7rem 1rem; border-radius: 3px;
+    font-size: 0.85rem; font-weight: 600; color: var(--text);
+  }
+  .value-chip span { color: var(--gold); margin-right: 0.4rem; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--warm); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: white; padding: 2rem;
+    border: 1px solid var(--border); border-radius: 4px;
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    height: 3px; width: 0; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,18,8,0.1); }
+  .service-card:hover::after { width: 100%; }
+  .service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 0.7rem; }
+  .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--ink); }
+  #pricing .section-label { color: var(--gold-light); }
+  #pricing h2 { color: var(--cream); }
+  #pricing .section-intro { color: #a09080; }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .pricing-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px; padding: 2.5rem 2rem;
+    position: relative; transition: all 0.25s;
+  }
+  .pricing-card.featured {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--rust); color: white;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 20px;
+  }
+  .pricing-tier {
+    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 700; color: var(--gold-light); margin-bottom: 0.5rem;
+  }
+  .pricing-card.featured .pricing-tier { color: var(--ink); }
+  .pricing-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900; color: white; line-height: 1;
+  }
+  .pricing-card.featured .pricing-price { color: var(--ink); }
+  .pricing-price sub { font-size: 0.9rem; font-weight: 400; opacity: 0.7; }
+  .pricing-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); margin: 0.5rem 0 1.5rem; }
+  .pricing-card.featured .pricing-desc { color: rgba(26,18,8,0.65); }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .pricing-features li {
+    font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    padding-left: 1.4rem; position: relative;
+  }
+  .pricing-card.featured .pricing-features li { color: var(--ink); }
+  .pricing-features li::before {
+    content: '✓'; position: absolute; left: 0; color: var(--gold-light); font-weight: 700;
+  }
+  .pricing-card.featured .pricing-features li::before { color: var(--ink); }
+  .pricing-cta {
+    display: block; text-align: center; margin-top: 2rem;
+    padding: 0.85rem; border-radius: 3px; text-decoration: none;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);
+  }
+  .pricing-cta:hover { background: white; color: var(--ink); }
+  .pricing-card.featured .pricing-cta { background: var(--ink); color: white; border-color: var(--ink); }
+  .pricing-card.featured .pricing-cta:hover { background: var(--rust); }
+  .mpesa-info {
+    margin-top: 1rem; padding: 0.9rem 1rem;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px; text-align: center;
+  }
+  .pricing-card.featured .mpesa-info { background: rgba(26,18,8,0.1); border-color: rgba(26,18,8,0.15); }
+  .mpesa-info p { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 0.3rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .pricing-card.featured .mpesa-info p { color: rgba(26,18,8,0.5); }
+  .mpesa-number { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.05em; }
+  .pricing-card.featured .mpesa-number { color: var(--ink); }
+  .mpesa-name { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.15rem; }
+  .pricing-card.featured .mpesa-name { color: rgba(26,18,8,0.5); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3.5rem; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 3px;
+    background: var(--warm); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 600; margin-bottom: 0.2rem; }
+  .contact-item a, .contact-item p { color: var(--text); text-decoration: none; font-size: 0.95rem; }
+  .contact-item a:hover { color: var(--gold); }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .form-group input, .form-group select, .form-group textarea {
+    background: white; border: 1px solid var(--border);
+    padding: 0.75rem 1rem; border-radius: 3px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text);
+    outline: none; transition: border 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit { align-self: flex-start; }
+
+  /* ── POLICY STRIP ── */
+  .policy-strip {
+    background: var(--warm); border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 5vw;
+  }
+  .policy-accordion { max-width: 860px; margin: 2rem auto 0; }
+  .accordion-item { border-bottom: 1px solid var(--border); }
+  .accordion-header {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 1.2rem 0; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--ink);
+    text-align: left;
+  }
+  .accordion-header:hover { color: var(--gold); }
+  .accordion-icon { font-size: 1.2rem; color: var(--gold); transition: transform 0.2s; }
+  .accordion-body { display: none; padding: 0 0 1.2rem; font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
+  .accordion-body.open { display: block; }
+  .accordion-icon.open { transform: rotate(45deg); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(249,245,238,0.6);
+    padding: 60px 5vw 30px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem; margin-bottom: 3rem;
+    padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--cream); margin-bottom: 0.8rem;
+  }
+  .footer-brand h3 span { color: var(--gold); }
+  .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 320px; }
+  .footer-col h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--cream); margin-bottom: 1rem; font-weight: 700; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a { color: rgba(249,245,238,0.55); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; }
+  .footer-tagline { color: var(--gold); font-family: 'Playfair Display', serif; font-style: italic; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 4vw; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding-top: 100px; }
+    .hero::before { display: none; }
+    .hero-visual { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── FADE IN ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.25s; }
+  .hero-sub { animation-delay: 0.4s; }
+  .btn-group { animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">ZUHZAH <span>CONSULTING</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Professional Document Services · Global</p>
+    <h1>Documents that <em>open doors.</em></h1>
+    <p class="hero-sub">We craft expertly tailored CVs, proposals, statements of purpose, grant applications, and more — for individuals and organisations across Africa and beyond.</p>
+    <div class="btn-group">
+      <a href="#services" class="btn-primary">Our Services</a>
+      <a href="#contact" class="btn-outline">Get a Quote</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-card">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years of professional experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">Global</div>
+      <div class="stat-label">Serving clients worldwide</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Specialised document services</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who We Are</p>
+  <h2>Your trusted document partner</h2>
+  <p class="section-intro">We help professionals, students, and organisations present their best selves through strategically crafted documents.</p>
+  <div class="about-grid">
+    <div class="about-main">
+      <p>Zuhzah Consulting is a professional document services firm — online-based with over three years of experience helping individuals and organisations across the globe. We serve job seekers, students, academics, NGOs, startups, and established businesses.</p>
+      <p>Our team of seasoned consultants combines deep industry knowledge with exceptional writing skills to deliver documents that are not only polished and professional, but strategically tailored to achieve results.</p>
+      <div class="values-grid">
+        <div class="value-chip"><span>★</span> Excellence</div>
+        <div class="value-chip"><span>★</span> Integrity</div>
+        <div class="value-chip"><span>★</span> Client Focus</div>
+        <div class="value-chip"><span>★</span> Timeliness</div>
+        <div class="value-chip"><span>★</span> Confidentiality</div>
+      </div>
+    </div>
+    <div class="mvv-stack">
+      <div class="mvv-item">
+        <h4>Our Mission</h4>
+        <p>To empower professionals, students, and organisations across Africa and beyond with high-quality, results-driven documents that open doors, advance careers, and secure opportunities.</p>
+      </div>
+      <div class="mvv-item">
+        <h4>Our Vision</h4>
+        <p>To be the most trusted professional document services partner on the African continent and a recognised name globally.</p>
+      </div>
+      <div class="mvv-item">
+        <h4>Why Choose Us</h4>
+        <p>We don't produce generic documents. Every piece is tailored to your specific goals, industry, and voice — because your story deserves to be told right.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <p class="section-label">What We Offer</p>
+      <h2>Comprehensive document services</h2>
+    </div>
+    <a href="#contact" class="btn-outline">Discuss Your Needs</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📄</div>
+      <h3>CV / Resume Writing</h3>
+      <p>Modern, ATS-optimised CVs tailored to your target role and industry with compelling professional summaries and strategic keyword placement.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✉️</div>
+      <h3>Cover Letters</h3>
+      <p>Personalised, engaging cover letters that complement your CV, speak to the employer's needs, and articulate why you are the right candidate.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Statement of Purpose</h3>
+      <p>Compelling narratives for university, postgraduate, and scholarship applications that resonate with admissions committees and scholarship panels.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💡</div>
+      <h3>Motivation Letters</h3>
+      <p>Authentic, persuasive letters for fellowships, internships, competitive programmes, and awards that showcase your passion and unique fit.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Proposals</h3>
+      <p>Structured, professional proposals that clearly communicate your objectives, methodology, budget, and expected outcomes to clients and investors.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏆</div>
+      <h3>Grant Writing</h3>
+      <p>End-to-end grant application support for NGOs, startups, and researchers — needs assessments, project narratives, budget justifications, and impact statements.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <h3>Company Profile Design</h3>
+      <p>Professional company profiles that communicate your brand identity, mission, services, team, and achievements in a clear and visually organised format.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔗</div>
+      <h3>LinkedIn Optimisation</h3>
+      <p>Full profile rewrite — headline, summary, experience, skills, and recommendations strategy — with keyword optimisation to attract recruiters and opportunities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <p class="section-label">Transparent Pricing</p>
+  <h2>Simple, honest packages</h2>
+  <p class="section-intro">No hidden fees. All packages include direct consultation, professional writing, and revisions.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <p class="pricing-tier">Essential</p>
+      <div class="pricing-price">Kshs 800 <sub>/ document</sub></div>
+      <p class="pricing-desc">Per single document — ideal for focused needs</p>
+      <ul class="pricing-features">
+        <li>CV / Resume writing</li>
+        <li>ATS-friendly, professionally formatted</li>
+        <li>Tailored to your role &amp; industry</li>
+        <li>3 free revision rounds</li>
+        <li>Delivered in PDF format</li>
+        <li>Standard delivery: 24–48 working hours</li>
+      </ul>
+      <a href="https://wa.me/254716726393?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Essential%20package%20(Kshs%20800)" target="_blank" class="pricing-cta">Order via WhatsApp</a>
+      <div class="mpesa-info">
+        <p>Pay via M-Pesa Send Money</p>
+        <div class="mpesa-number">0716 726 393</div>
+        <div class="mpesa-name">Zuhzah Consulting</div>
+      </div>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <p class="pricing-tier">Professional Bundle</p>
+      <div class="pricing-price">Kshs 2,000 <sub>/ bundle</sub></div>
+      <p class="pricing-desc">Best value — everything you need to land the role</p>
+      <ul class="pricing-features">
+        <li>CV + Cover Letter + LinkedIn Optimisation</li>
+        <li>Fully tailored to your target job or programme</li>
+        <li>3 free revision rounds</li>
+        <li>Express delivery: 48 hours</li>
+        <li>PDF &amp; LinkedIn-ready text format</li>
+      </ul>
+      <a href="https://wa.me/254716726393?text=Hi%2C%20I%27d%20like%20to%20order%20the%20Professional%20Bundle%20(Kshs%202000)" target="_blank" class="pricing-cta">Order via WhatsApp</a>
+      <div class="mpesa-info">
+        <p>Pay via M-Pesa Send Money</p>
+        <div class="mpesa-number">0716 726 393</div>
+        <div class="mpesa-name">Zuhzah Consulting</div>
+      </div>
+    </div>
+    <div class="pricing-card">
+      <p class="pricing-tier">Premium</p>
+      <div class="pricing-price">Custom <sub>pricing</sub></div>
+      <p class="pricing-desc">For complex, high-stakes documents and projects</p>
+      <ul class="pricing-features">
+        <li>Grant writing (end-to-end)</li>
+        <li>Company profile design &amp; writing</li>
+        <li>Business &amp; project proposals</li>
+        <li>Statements of purpose &amp; motivation letters</li>
+        <li>Unlimited revisions until satisfied</li>
+        <li>Dedicated consultant assigned</li>
+      </ul>
+      <a href="https://wa.me/254716726393?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20a%20Premium%20document%20service" target="_blank" class="pricing-cta">Request a Quote</a>
+      <div class="mpesa-info">
+        <p>Pay via M-Pesa Send Money</p>
+        <div class="mpesa-number">0716 726 393</div>
+        <div class="mpesa-name">Zuhzah Consulting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS / PRIVACY ACCORDION -->
+<div class="policy-strip">
+  <div style="text-align:center; margin-bottom: 0.5rem;">
+    <p class="section-label" style="display:inline-block">Policies</p>
+  </div>
+  <h2 style="text-align:center; font-size:1.8rem;">Our Terms &amp; Privacy</h2>
+  <div class="policy-accordion">
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        Orders &amp; Payment <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">Orders are confirmed upon receipt of payment or a confirmed payment arrangement. We accept mobile money (M-Pesa), bank transfer, and PayPal. Prices are as listed in our service packages.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        Delivery Timelines <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">Standard delivery is 2 business days from order confirmation. Express (48 hrs) and urgent (24 hrs) delivery are available for applicable packages. Timelines begin once all required client information has been received.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        Revisions &amp; Refunds <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">Revision requests must be submitted within 3 days of document delivery. Revisions are based on the original brief; significant scope changes may incur additional charges. Refunds are considered on a case-by-case basis if the delivered document does not meet the agreed brief after all revision rounds have been exhausted. Refunds are not issued for change of mind after work has commenced.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        Privacy &amp; Confidentiality <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">All personal information and documents shared with Zuhzah Consulting are treated with strict confidentiality. We do not sell, share, or disclose your information to third parties except as required by law. Documents and personal data are stored securely and deleted upon your request. You have the right to request access to, correction of, or deletion of your personal information at any time.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        Intellectual Property &amp; Governing Law <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">All documents produced by Zuhzah Consulting become the property of the client upon full payment. These terms are governed by the laws of the Republic of Kenya. Any disputes shall be resolved through mutual negotiation or, where necessary, through the appropriate Kenyan legal channels.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Reach Out</p>
+  <h2>Let's work together</h2>
+  <p class="section-intro">We're here to help. Reach out and we'll get back to you within 2–4 hours on business days.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:zuhzahconsulting@gmail.com">zuhzahconsulting@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Phone / WhatsApp</h4>
+          <a href="tel:+254716726393">+254 716 726 393</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Location</h4>
+          <p>Nairobi, Kenya · Serving clients worldwide</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⏱️</div>
+        <div>
+          <h4>Response Time</h4>
+          <p>Within 2–4 hours on business days</p>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>CV / Resume Writing</option>
+          <option>Cover Letter</option>
+          <option>Statement of Purpose</option>
+          <option>Motivation Letter</option>
+          <option>Proposal</option>
+          <option>Grant Writing</option>
+          <option>Company Profile Design</option>
+          <option>LinkedIn Optimisation</option>
+          <option>Professional Bundle (CV + Cover Letter + LinkedIn)</option>
+          <option>Other / Not sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your project, deadline, or any questions…"></textarea>
+      </div>
+      <button type="submit" class="btn-primary form-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h3>ZUHZAH <span>CONSULTING</span></h3>
+      <p>Professional document services for individuals and organisations — helping you present your best self and secure the opportunities you deserve.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">CV / Resume Writing</a></li>
+        <li><a href="#services">Cover Letters</a></li>
+        <li><a href="#services">Statement of Purpose</a></li>
+        <li><a href="#services">Grant Writing</a></li>
+        <li><a href="#services">LinkedIn Optimisation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="mailto:zuhzahconsulting@gmail.com">zuhzahconsulting@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Zuhzah Consulting. All rights reserved.</span>
+    <span class="footer-tagline">Documents that open doors.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleAccordion(btn) {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.accordion-icon');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.accordion-icon').forEach(i => i.classList.remove('open'));
+    if (!isOpen) { body.classList.add('open'); icon.classList.add('open'); }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#5a6e4a';
+    btn.disabled = true;
+  }
+
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .pricing-card, .mvv-item, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
